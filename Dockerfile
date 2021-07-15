@@ -19,6 +19,7 @@ RUN npm install -g maildev
 
 # sendgrid-dev
 COPY sendgrid-dev /usr/local/bin/sendgrid-dev
+RUN chmod 755 /usr/local/bin/sendgrid-dev
 
 # superviserd
 COPY supervisor/supervisord.conf /etc/supervisord.conf
