@@ -1,0 +1,9 @@
+version: '2'
+
+  sendgrid:
+    build: .
+    image: sendgrid-maildev
+    hostname: sendgrid-maildev
+    environment:
+      - SENDGRID_API_KEY=SG.xxxxx
+    container_name: sendgrid-maildev
