@@ -25,6 +25,22 @@ services:
     container_name: sendgrid-maildev
 ```
 
+## Example with curl
+
+```
+% docker exec -it sendgrid-maildev bash
+# curl --request POST \
+  --url http://127.0.0.1:3030/v3/mail/send \
+  --header 'Authorization: Bearer SG.xxxxx' \
+  --header 'Content-Type: application/json' \
+  --data '{"personalizations": [{ 
+    "to": [{"email": "to@example.com"}]}], 
+    "from": {"email": "from@example.com"}, 
+    "subject": "Test Subject", 
+    "content": [{"type": "text/plain", "value": "Test Content"}] 
+  }'
+```
+
 # Example of AWS
 
 ![](https://raw.githubusercontent.com/yKanazawa/sendgrid-maildev/master/img/example_of_aws.png)
