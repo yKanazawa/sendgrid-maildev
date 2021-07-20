@@ -7,6 +7,24 @@ For test your sendgrid emails during development.
 
 ![](https://raw.githubusercontent.com/yKanazawa/sendgrid-maildev/master/img/example_of_development.png)
 
+## Example of docker-compose.yml
+
+The setting environment variables are default values.
+
+```
+version: '2'
+
+services:
+  sendgrid-maildev:
+    image: ykanazawa/sendgrid-maildev
+    hostname: sendgrid-maildev
+    environment:
+      - SENDGRID_DEV_API_SERVER=:3030
+      - SENDGRID_DEV_API_KEY=SG.xxxxx
+      - SENDGRID_DEV_SMTP_SERVER=127.0.0.1:1025
+    container_name: sendgrid-maildev
+```
+
 # Example of AWS
 
 ![](https://raw.githubusercontent.com/yKanazawa/sendgrid-maildev/master/img/example_of_aws.png)
