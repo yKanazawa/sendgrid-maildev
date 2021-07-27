@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  sendgrid:
+    build: .
+    image: sendgrid-maildev
+    hostname: sendgrid-maildev
+    environment:
+      - SENDGRID_API_KEY=SG.xxxxx
+    container_name: sendgrid-maildev
+    ports:
+      - 1025:1025
+      - 1080:1080
+      - 3030:3030
