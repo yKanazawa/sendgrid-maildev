@@ -24,7 +24,9 @@ services:
       - SENDGRID_DEV_SMTP_SERVER=127.0.0.1:1025
     container_name: sendgrid-maildev
     ports:
+      - 1025:1025
       - 1080:1080
+      - 3030:3030
 ```
 
 ## Example with curl
