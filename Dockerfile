@@ -21,8 +21,10 @@ RUN apk add --no-cache --virtual .temp-pkgs \
 WORKDIR ${APP_ROOT}
 
 # MailDev
+ENV MAILDEV_REPO_COMMIT_ID 96248f8c38bd269f541dd91e60ad560f57eb46a0
 RUN git clone https://github.com/maildev/maildev.git && \
     cd maildev && \
+    git reset --hard ${MAILDEV_REPO_COMMIT_ID} && \
     npm ci --only=production && \
     ln -fs ${APP_ROOT}/maildev/bin/maildev /usr/local/bin/maildev
 
