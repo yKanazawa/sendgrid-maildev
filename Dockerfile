@@ -16,17 +16,14 @@ RUN apk update && \
 
 # install temporary packages
 RUN apk add --no-cache --virtual .temp-pkgs \
-    git \
-    python2 \
-    make \
-    g++
+    git
 
 WORKDIR ${APP_ROOT}
 
 # MailDev
 RUN git clone https://github.com/maildev/maildev.git && \
     cd maildev && \
-    npm ci --python=python2.7 && \
+    npm ci --only=production && \
     ln -fs ${APP_ROOT}/maildev/bin/maildev /usr/local/bin/maildev
 
 # sendgrid-dev
