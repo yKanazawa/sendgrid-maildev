@@ -9,14 +9,11 @@ RUN apk update && \
     busybox-extras \
     bash \
     curl \
+    git \
     mailx \
     supervisor \
     nodejs \
     npm
-
-# install temporary packages
-RUN apk add --no-cache --virtual .temp-pkgs \
-    git
 
 WORKDIR ${APP_ROOT}
 
@@ -36,9 +33,6 @@ RUN chmod 755 /usr/local/bin/sendgrid-dev
 COPY supervisor/supervisord.conf /etc/supervisord.conf
 COPY supervisor/app.conf /etc/supervisor/conf.d/app.conf
 RUN echo files = /etc/supervisor/conf.d/*.conf >> /etc/supervisord.conf
-
-# remove temporary packages
-RUN apk del .temp-pkgs
 
 # Service to run
 CMD ["/usr/bin/supervisord"]
