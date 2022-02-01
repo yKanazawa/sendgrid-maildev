@@ -1,4 +1,4 @@
-FROM alpine:3.14
+FROM alpine:3.15
 
 ENV APP_ROOT /var/www/html
 
@@ -26,7 +26,7 @@ RUN git clone https://github.com/maildev/maildev.git && \
     ln -fs ${APP_ROOT}/maildev/bin/maildev /usr/local/bin/maildev
 
 # sendgrid-dev
-RUN curl -L -o /usr/local/bin/sendgrid-dev https://github.com/yKanazawa/sendgrid-dev/releases/download/v0.9.0/sendgrid-dev_$(if [ $(uname -m) = "aarch64" ]; then echo aarch64; else echo x86_64; fi)
+RUN curl -L -o /usr/local/bin/sendgrid-dev https://github.com/yKanazawa/sendgrid-dev/releases/download/v0.9.1/sendgrid-dev_$(if [ $(uname -m) = "aarch64" ]; then echo aarch64; else echo x86_64; fi)
 RUN chmod 755 /usr/local/bin/sendgrid-dev
 
 # superviserd
