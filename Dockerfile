@@ -1,4 +1,4 @@
-FROM alpine:3.15
+FROM alpine:3.18
 
 ENV APP_ROOT /var/www/html
 
@@ -15,15 +15,8 @@ RUN apk update && \
     nodejs \
     npm
 
-WORKDIR ${APP_ROOT}
-
 # MailDev
-ENV MAILDEV_REPO_COMMIT_ID 96248f8c38bd269f541dd91e60ad560f57eb46a0
-RUN git clone https://github.com/maildev/maildev.git && \
-    cd maildev && \
-    git reset --hard ${MAILDEV_REPO_COMMIT_ID} && \
-    npm ci --only=production && \
-    ln -fs ${APP_ROOT}/maildev/bin/maildev /usr/local/bin/maildev
+RUN npm install -g maildev
 
 # sendgrid-dev
 RUN curl -L -o /usr/local/bin/sendgrid-dev https://github.com/yKanazawa/sendgrid-dev/releases/download/v0.9.1/sendgrid-dev_$(if [ $(uname -m) = "aarch64" ]; then echo aarch64; else echo x86_64; fi)
