@@ -1,6 +1,6 @@
 FROM alpine:3.22.0
 
-ENV APP_ROOT /var/www/html
+ENV APP_ROOT=/var/www/html
 
 # install packages
 RUN apk update && \
